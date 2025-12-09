@@ -1394,26 +1394,19 @@ body {
 
 .projects {
   padding: 100px 20px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(180deg, white 0%, #f1f5f9 100%);
   border-top: 1px solid;
-  border-image: linear-gradient(to right, #10b981, #919294) 1;
 }
 
 .projects h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-  animation: fadeInUp 1s ease;
-  background: linear-gradient(135deg, #ffffff 0%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: none;
+  font-size: 2.8rem;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: 800;
   letter-spacing: -1px;
-  justify-content: center;
-  display: flex;
+  position: relative;
+  padding-bottom: 25px;
 }
 
 .projects h2::after {
@@ -1441,16 +1434,12 @@ body {
 
 /* Project Cards - Premium Design */
 .project-item {
-  background: linear-gradient(135deg, #0f172a 0%, #1a1f3a 100%);
+  background: white;
+  padding: 40px 35px;
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  animation: fadeIn 0.6s ease;
+  transition: all 0.4s ease;
   border: 1px solid rgba(16, 185, 129, 0.1);
-  position: relative;
 }
 
 .project-item::before {
@@ -1587,11 +1576,13 @@ body {
 }
 
 .project-excerpt {
-  margin: 15px 25px;
-  color: #e8f2ff;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  flex-grow: 1;
+  padding: 12px 0;
+  color: #475569;
+  font-size: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+  padding-left: 30px;
+  transition: all 0.3s ease;
 }
 
 .project-link {
@@ -3471,3 +3462,265 @@ body {
     font-size: 1.5rem;
   }
 }
+
+/* ==========================================================================
+   ABOUT ME PAGE
+   ========================================================================== */
+
+/* About Me Header */
+.about-me-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: white;
+  text-align: center;
+  padding: 120px 20px 80px;
+  margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-me-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+      circle at 30% 50%,
+      rgba(16, 185, 129, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(6, 182, 212, 0.15) 0%,
+      transparent 50%
+    );
+  animation: backgroundShift 15s ease infinite;
+}
+
+.about-me-header-content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.about-me-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -2px;
+}
+
+.about-me-subtitle {
+  font-size: 1.3rem;
+  color: #cbd5e1;
+}
+
+/* About Me Container */
+.about-me-page {
+  background: white;
+}
+
+.about-me-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+/* About Me Image */
+.about-me-image {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.about-me-image img {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* About Me Content */
+.about-me-content {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #475569;
+}
+
+.about-me-content h2 {
+  font-size: 2.2rem;
+  color: #0f172a;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.about-me-content h3 {
+  font-size: 1.8rem;
+  color: #0f172a;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.about-me-content p {
+  margin-bottom: 25px;
+}
+
+.about-me-content ul,
+.about-me-content ol {
+  margin: 25px 0 25px 30px;
+}
+
+.about-me-content li {
+  margin-bottom: 12px;
+}
+
+.about-me-content a {
+  color: #10b981;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.about-me-content a:hover {
+  color: #06b6d4;
+}
+
+/* Skills Section */
+.skills-section {
+  background: linear-gradient(180deg, white 0%, #f1f5f9 100%);
+  padding: 80px 20px 100px;
+}
+
+.skills-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skills-container h2 {
+  font-size: 2.8rem;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  position: relative;
+  padding-bottom: 25px;
+}
+
+.skills-container h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
+  border-radius: 3px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 35px;
+}
+
+.skill-category {
+  background: white;
+  padding: 40px 35px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.skill-category:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.skill-category h3 {
+  font-size: 1.8rem;
+  color: #0f172a;
+  margin-bottom: 25px;
+  font-weight: 700;
+  border-bottom: 3px solid #10b981;
+  padding-bottom: 15px;
+}
+
+.skill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-list li {
+  padding: 12px 0;
+  color: #475569;
+  font-size: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+  padding-left: 30px;
+  transition: all 0.3s ease;
+}
+
+.skill-list li:last-child {
+  border-bottom: none;
+}
+
+.skill-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.skill-list li:hover {
+  color: #10b981;
+  padding-left: 35px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-me-title {
+    font-size: 2.8rem;
+  }
+
+  .about-me-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .about-me-container {
+    padding: 60px 20px;
+  }
+
+  .about-me-content {
+    font-size: 1rem;
+  }
+
+  .skills-container h2 {
+    font-size: 2.2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-me-title {
+    font-size: 2.2rem;
+  }
+}
+  

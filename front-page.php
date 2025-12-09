@@ -10,7 +10,7 @@
 
     </section>
 
-        <div class="about-container">
+        <!-- <div class="about-container">
             <section class="about">
                 <?php
                 // Get the About Me page (ID: 16)
@@ -22,7 +22,7 @@
                 }
                 ?>
             </section>
-        </div>
+        </div> -->
 
     <section class="projects">
         <h2>Projects</h2>
