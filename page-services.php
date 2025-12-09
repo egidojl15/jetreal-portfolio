@@ -149,7 +149,7 @@ get_header();
     <section class="services-cta">
         <div class="services-cta-content">
             <h2 class="cta-title">Ready to Start Your Project?</h2>
-            <p class="cta-description">Let's work together to bring your ideas to life</p>
+            <p class="cta-description">Let's work together and bring your ideas to life</p>
             <a href="<?php echo esc_url(home_url('/contact')); ?>" class="cta-button">Get in Touch</a>
         </div>
     </section>

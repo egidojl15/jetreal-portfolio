@@ -1196,7 +1196,7 @@ body {
 .hero {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   color: white;
-  text-align: center;
+  text-align: left;
   padding: 140px 20px;
   margin-bottom: 0;
   position: relative;
@@ -1226,6 +1226,24 @@ body {
       rgba(16, 185, 129, 0.05) 0%,
       transparent 50%
     );
+}
+
+.my-hero-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #10b981;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  animation: backgroundShift 10s infinite ease-in-out;
+  float: right;
+}
+
+.my-hero-image img {
+  border-radius: 50%;
+  width: 250px;
+  height: 240px;
+  object-fit: cover;
 }
 
 @keyframes backgroundShift {
@@ -1290,7 +1308,9 @@ body {
   color: #cbd5e1;
   font-weight: 400;
   max-width: 600px;
-  margin: 0 auto;
+  margin-left: 0; /* align left */
+  margin-right: auto;
+  text-align: left;
 }
 
 @keyframes fadeInUp {

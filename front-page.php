@@ -4,8 +4,9 @@
         <h1>Hi, I'm Jetreal</h1>
         <p>Welcome to my portfolio website!</p>
 
-        <!-- adding a hero image -->
-        <!-- <img src="<?php echo get_template_directory_uri(); ?>/images/test.jpg" alt="Hero Image" class="hero-image">/> -->
+        <section class="my-hero-image">
+            <img src="<?php echo get_template_directory_uri(); ?>/images/oka.jpg" alt="Hero Image" class="hero-image">
+        </section>
 
     </section>
 
