@@ -1,7 +1,7 @@
     <?php get_header(); ?>
 
     <section class="hero">
-        <h1>Hi, I'm Jetreal</h1>
+        <h1>Hi, I'm Jetler Egido</h1>
         <p>Welcome to my portfolio website!</p>
 
         <section class="my-hero-image">

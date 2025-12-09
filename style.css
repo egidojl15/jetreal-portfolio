@@ -1043,26 +1043,31 @@ body {
 }
 
 /* Logo Placeholder */
-.logo-placeholder {
+/* .logo-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 130px;
-  height: 65px;
+  width: 170px;
+  height: 70px;
   border-radius: 18px;
   overflow: visible;
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
   position: relative;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* .logo-placeholder:hover {
-  transform: translateY(-3px) rotate(-5deg) scale(1.05);
-  box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5);
 } */
 
+.logo-placeholder a {
+  text-decoration: none !important;
+  border: none !important;
+}
+
+.logo-placeholder a span {
+  text-decoration: none !important;
+  border: none !important;
+}
+
 .logo-initials {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 900;
   color: #10b981;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -1236,16 +1241,19 @@ body {
   border: 5px solid #10b981;
   box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
   animation: backgroundShift 10s infinite ease-in-out;
-  float: right;
+
+  /* New positioning rules */
+  display: block;
+  margin: 0 auto 2rem auto; /* centers it + adds space below */
+  float: none; /* remove the old float */
 }
 
 .my-hero-image img {
   border-radius: 50%;
-  width: 250px;
-  height: 240px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
-
 @keyframes backgroundShift {
   0%,
   100% {
@@ -1297,6 +1305,8 @@ body {
   background-clip: text;
   text-shadow: none;
   letter-spacing: -1px;
+  justify-content: center;
+  display: flex;
 }
 
 .hero p {
@@ -1305,12 +1315,11 @@ body {
   position: relative;
   z-index: 1;
   animation: fadeInUp 1.2s ease;
-  color: #cbd5e1;
+  color: #f1f3f5;
   font-weight: 400;
-  max-width: 600px;
-  margin-left: 0; /* align left */
-  margin-right: auto;
-  text-align: left;
+  max-width: 680px; /* changed from 600px → looks better centered */
+  margin: 0 auto 2rem auto; /* changed → perfect centering + spacing */
+  text-align: center; /* changed from left to center */
 }
 
 @keyframes fadeInUp {
@@ -1719,11 +1728,12 @@ body {
   line-height: 1.9;
   color: #475569;
   padding: 0 20px;
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
 }
 
 .entry-content h2 {
   font-size: 2.2rem;
-  color: #0f172a;
+  color: #dfe3eb;
   margin-top: 50px;
   margin-bottom: 25px;
   padding-bottom: 20px;
@@ -1734,13 +1744,14 @@ body {
 .entry-content p {
   font-size: 1.15rem;
   margin-bottom: 20px;
+  color: #10b981;
 }
 
 /* Responsibilities Section */
 .project-responsibilities {
   margin-top: 50px;
   padding: 40px;
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
   border-radius: 20px;
   border-left: 5px solid #10b981;
   box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1);
@@ -1748,7 +1759,7 @@ body {
 
 .project-responsibilities h2 {
   font-size: 2rem;
-  color: #0f172a;
+  color: #dfe3eb;
   margin-bottom: 20px;
   font-weight: 700;
 }
@@ -1756,7 +1767,17 @@ body {
 .project-responsibilities p {
   font-size: 1.1rem;
   line-height: 1.9;
-  color: #475569;
+  color: #10b981;
+}
+
+.project-content {
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+  margin-top: 50px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+  border-radius: 20px;
+  border-left: 5px solid #10b981;
+  box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1);
 }
 
 /* Tech Stack Section on Single Page */

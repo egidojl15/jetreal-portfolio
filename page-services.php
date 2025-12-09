@@ -14,7 +14,7 @@ get_header();
 <section class="services-header">
     <div class="services-header-content">
         <h1 class="services-title">Services</h1>
-        <p class="services-subtitle">Professional web development solutions tailored to your needs</p>
+        <p class="services-subtitle">Web development solutions tailored to your needs</p>
     </div>
 </section>
 
@@ -53,7 +53,7 @@ get_header();
                     </p>
                     <ul class="service-features">
                         <li>Responsive Design</li>
-                        <li>Fast Loading Speed</li>
+                        <li>Loads Fast</li>
                         <li>SEO Optimized</li>
                         <li>Cross-browser Compatible</li>
                     </ul>
@@ -69,9 +69,10 @@ get_header();
                         fully functional WordPress website.
                     </p>
                     <ul class="service-features">
-                        <li>Custom Themes</li>
-                        <li>Plugin Development</li>
-                        <li>WooCommerce Integration</li>
+                        <li>Custom look & feel</li>
+                        <li>Easy to edit yourself</li>
+                        <li>Blog & contact forms</li>
+                        <li>Online shop option</li>
                         <li>Website Maintenance</li>
                     </ul>
                 </div>
@@ -85,26 +86,10 @@ get_header();
                         and drive conversions.
                     </p>
                     <ul class="service-features">
-                        <li>Wireframing & Prototyping</li>
-                        <li>User Research</li>
-                        <li>Visual Design</li>
-                        <li>Usability Testing</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 4: E-commerce Solutions -->
-                <div class="service-card">
-                    <div class="service-icon">🛒</div>
-                    <h3 class="service-title">E-commerce Solutions</h3>
-                    <p class="service-description">
-                        Complete online store setup with payment integration, inventory 
-                        management, and shipping solutions.
-                    </p>
-                    <ul class="service-features">
-                        <li>WooCommerce Setup</li>
-                        <li>Payment Gateway Integration</li>
-                        <li>Product Management</li>
-                        <li>Shopping Cart Optimization</li>
+                        <li>Clean & modern look</li>
+                        <li>Easy to navigate</li>
+                        <li>Matches your brand</li>
+                        <li>Focused on your goals</li>
                     </ul>
                 </div>
                 

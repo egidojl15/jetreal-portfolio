@@ -69,17 +69,21 @@ get_header();
                 
             </div>
             
-            <div class="entry-content">
-                <h2>Project Description</h2>
-                <?php the_content(); ?>
-            </div>
-            
-            <?php if ($responsibilities) : ?>
-                <div class="project-responsibilities">
-                    <h2>My Role & Responsibilities</h2>
-                    <p><?php echo nl2br(esc_html($responsibilities)); ?></p>
+            <div class="project-content">
+
+                <div class="entry-content">
+                    <h2>Project Description</h2>
+                    <?php the_content(); ?>
                 </div>
-            <?php endif; ?>
+            </div>
+
+                <?php if ($responsibilities) : ?>
+                    <div class="project-responsibilities">
+                        <h2>My Role & Responsibilities</h2>
+                        <p><?php echo nl2br(esc_html($responsibilities)); ?></p>
+                    </div>
+                <?php endif; ?>
+                
 
             <?php
             // Get and display tech stack
