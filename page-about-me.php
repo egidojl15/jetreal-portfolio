@@ -47,62 +47,47 @@ get_header();
     
     <!-- Skills Section (Optional - you can customize this) -->
     <section class="skills-section">
-    <div class="skills-container">
-        <h2>Skills & Technologies</h2>
-
-        <div class="skills-grid">
-
-            <?php 
-            // Get all Tech Categories
-            $tech_categories = get_terms(array(
-                'taxonomy' => 'tech_category',
-                'hide_empty' => false,
-            ));
-
-            if (!empty($tech_categories) && !is_wp_error($tech_categories)) :
-                foreach ($tech_categories as $category) :
-            ?>
+        <div class="skills-container">
+            <h2>Skills & Expertise</h2>
+            
+            <div class="skills-grid">
+                
                 <div class="skill-category">
-                    <h3><?php echo $category->name; ?></h3>
-
+                    <h3>Frontend</h3>
                     <ul class="skill-list">
-                        <?php
-                        // Get tech items inside this category
-                        $tech_items = get_posts(array(
-                            'post_type' => 'tech_stack',
-                            'numberposts' => -1,
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'tech_category',
-                                    'field'    => 'term_id',
-                                    'terms'    => $category->term_id,
-                                )
-                            ),
-                            'orderby' => 'title',
-                            'order' => 'ASC',
-                        ));
-
-                        if ($tech_items) :
-                            foreach ($tech_items as $tech) :
-                        ?>
-                                <li><?php echo esc_html($tech->post_title); ?></li>
-                        <?php 
-                            endforeach;
-                        else :
-                            echo "<li>No skills added yet.</li>";
-                        endif; 
-                        ?>
+                        <li>HTML & CSS</li>
+                        <li>JavaScript</li>
+                        <li>React.js</li>
+                        <li>Responsive Design</li>
                     </ul>
                 </div>
-
-            <?php 
-                endforeach;
-            endif; 
-            ?>
-
+                
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <ul class="skill-list">
+                        <li>PHP</li>
+                        <li>WordPress</li>
+                        <li>MySQL</li>
+                        <li>REST APIs</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Tools & Other</h3>
+                    <ul class="skill-list">
+                        <li>Git & GitHub</li>
+                        <li>VS Code</li>
+                        <li>Figma</li>
+                        <li>Xampp</li>
+                        <li>MySQL Workbench</li>
+                        <li>Excel</li>
+                        <li>PostgreSQL</li>
+                    </ul>
+                </div>
+                
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     
 </main>

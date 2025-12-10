@@ -118,6 +118,12 @@ function my_portfolio_theme_content_width() {
 }
 add_action( 'after_setup_theme', 'my_portfolio_theme_content_width', 0 );
 
+
+// Taxonomies and Custom Post Types
+require_once get_template_directory() . '/inc/taxonomies.php';
+require_once get_template_directory() . '/inc/meta-boxes.php';
+require_once get_template_directory() . '/inc/meta-save.php';
+
 /**
  * Register widget area.
  *
@@ -153,39 +159,6 @@ function my_portfolio_theme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'my_portfolio_theme_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
-
-/**
- * Load WooCommerce compatibility file.
- */
-if ( class_exists( 'WooCommerce' ) ) {
-	require get_template_directory() . '/inc/woocommerce.php';
-}
 
 /**
  * Register Custom Post Types
@@ -238,58 +211,6 @@ function my_portfolio_register_post_types() {
 }
 add_action('init', 'my_portfolio_register_post_types');
 
-/**
- * Register Custom Taxonomies
- */
-function my_portfolio_register_taxonomies() {
-    
-    // Register Project Type taxonomy
-    register_taxonomy('project_type', 'project', array(
-        'labels' => array(
-            'name' => 'Project Types',
-            'singular_name' => 'Project Type',
-            'search_items' => 'Search Project Types',
-            'all_items' => 'All Project Types',
-            'edit_item' => 'Edit Project Type',
-            'update_item' => 'Update Project Type',
-            'add_new_item' => 'Add New Project Type',
-            'new_item_name' => 'New Project Type Name',
-            'menu_name' => 'Project Types',
-        ),
-        'hierarchical' => true, // Like categories (can have parent/child)
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'project-type'),
-        'show_in_rest' => true,
-    ));
-    
-    // Register Tech Category taxonomy
-    register_taxonomy('tech_category', 'tech_stack', array(
-        'labels' => array(
-            'name' => 'Tech Categories',
-            'singular_name' => 'Tech Category',
-            'search_items' => 'Search Tech Categories',
-            'all_items' => 'All Tech Categories',
-            'edit_item' => 'Edit Tech Category',
-            'update_item' => 'Update Tech Category',
-            'add_new_item' => 'Add New Tech Category',
-            'new_item_name' => 'New Tech Category Name',
-            'menu_name' => 'Tech Categories',
-        ),
-        'hierarchical' => true,
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'tech-category'),
-        'show_in_rest' => true,
-    ));
-}
-add_action('init', 'my_portfolio_register_taxonomies');
-
-/**
- * Add Meta Boxes for Projects
- */
 function my_portfolio_add_project_meta_boxes() {
     add_meta_box(
         'project_details',                  // Meta box ID
@@ -302,144 +223,3 @@ function my_portfolio_add_project_meta_boxes() {
 }
 add_action('add_meta_boxes', 'my_portfolio_add_project_meta_boxes');
 
-/**
- * Display Meta Box HTML
- */
-function my_portfolio_project_details_html($post) {
-    // Security nonce field
-    wp_nonce_field('my_portfolio_save_project_details', 'my_portfolio_project_details_nonce');
-    
-    // Get existing values
-    $client_name = get_post_meta($post->ID, '_project_client_name', true);
-    $project_url = get_post_meta($post->ID, '_project_url', true);
-    $completion_date = get_post_meta($post->ID, '_project_completion_date', true);
-    $responsibilities = get_post_meta($post->ID, '_project_responsibilities', true);
-    
-    ?>
-    <table class="form-table">
-        <tr>
-            <th><label for="project_client_name">Client Name</label></th>
-            <td>
-                <input type="text" 
-                       id="project_client_name" 
-                       name="project_client_name" 
-                       value="<?php echo esc_attr($client_name); ?>" 
-                       class="regular-text">
-            </td>
-        </tr>
-        <tr>
-            <th><label for="project_url">Project URL</label></th>
-            <td>
-                <input type="url" 
-                       id="project_url" 
-                       name="project_url" 
-                       value="<?php echo esc_url($project_url); ?>" 
-                       class="regular-text"
-                       placeholder="https://example.com">
-            </td>
-        </tr>
-        <tr>
-            <th><label for="project_completion_date">Completion Date</label></th>
-            <td>
-                <input type="date" 
-                       id="project_completion_date" 
-                       name="project_completion_date" 
-                       value="<?php echo esc_attr($completion_date); ?>">
-            </td>
-        </tr>
-        <tr>
-            <th><label for="project_responsibilities">Responsibilities / Role</label></th>
-            <td>
-                <textarea id="project_responsibilities" 
-                          name="project_responsibilities" 
-                          rows="5" 
-                          class="large-text"><?php echo esc_textarea($responsibilities); ?></textarea>
-                <p class="description">Describe your role and responsibilities in this project.</p>
-            </td>
-        </tr>
-
-        <tr>
-            <th><label for="project_tech_stack">Tech Stack</label></th>
-            <td>
-                <?php
-                // Get all tech stack items
-                $tech_items = get_posts(array(
-                    'post_type' => 'tech_stack',
-                    'posts_per_page' => -1,
-                    'orderby' => 'title',
-                    'order' => 'ASC'
-                ));
-                
-                // Get currently selected tech stack IDs
-                $selected_tech = get_post_meta($post->ID, '_project_tech_stack', true);
-                if (!is_array($selected_tech)) {
-                    $selected_tech = array();
-                }
-                
-                if ($tech_items) :
-                    echo '<div style="max-height: 200px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">';
-                    foreach ($tech_items as $tech) :
-                        $checked = in_array($tech->ID, $selected_tech) ? 'checked' : '';
-                        ?>
-                        <label style="display: block; margin-bottom: 5px;">
-                            <input type="checkbox" 
-                                   name="project_tech_stack[]" 
-                                   value="<?php echo $tech->ID; ?>" 
-                                   <?php echo $checked; ?>>
-                            <?php echo esc_html($tech->post_title); ?>
-                        </label>
-                        <?php
-                    endforeach;
-                    echo '</div>';
-                else :
-                    echo '<p>No technologies found. <a href="' . admin_url('post-new.php?post_type=tech_stack') . '">Add some technologies first</a>.</p>';
-                endif;
-                ?>
-                <p class="description">Select the technologies used in this project.</p>
-            </td>
-        </tr>
-    </table>
-    <?php
-}
-
-/**
- * Save Meta Box Data
- */
-function my_portfolio_save_project_details($post_id) {
-    // Security checks
-    if (!isset($_POST['my_portfolio_project_details_nonce'])) {
-        return;
-    }
-    if (!wp_verify_nonce($_POST['my_portfolio_project_details_nonce'], 'my_portfolio_save_project_details')) {
-        return;
-    }
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-    if (!current_user_can('edit_post', $post_id)) {
-        return;
-    }
-    
-    // Save the fields
-    if (isset($_POST['project_client_name'])) {
-        update_post_meta($post_id, '_project_client_name', sanitize_text_field($_POST['project_client_name']));
-    }
-    if (isset($_POST['project_url'])) {
-        update_post_meta($post_id, '_project_url', esc_url_raw($_POST['project_url']));
-    }
-    if (isset($_POST['project_completion_date'])) {
-        update_post_meta($post_id, '_project_completion_date', sanitize_text_field($_POST['project_completion_date']));
-    }
-    if (isset($_POST['project_responsibilities'])) {
-        update_post_meta($post_id, '_project_responsibilities', sanitize_textarea_field($_POST['project_responsibilities']));
-    }
-    // Save tech stack
-    if (isset($_POST['project_tech_stack']) && is_array($_POST['project_tech_stack'])) {
-        $tech_stack = array_map('intval', $_POST['project_tech_stack']);
-        update_post_meta($post_id, '_project_tech_stack', $tech_stack);
-    } else {
-        // If no checkboxes selected, delete the meta
-        delete_post_meta($post_id, '_project_tech_stack');
-    }
-}
-add_action('save_post', 'my_portfolio_save_project_details');

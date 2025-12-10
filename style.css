@@ -847,13 +847,6 @@ textarea {
   display: block;
 }
 
-/*--------------------------------------------------------------
-# Plugins
---------------------------------------------------------------*/
-
-/* Jetpack infinite scroll
---------------------------------------------- */
-
 /* Hide the Posts Navigation and the Footer when Infinite Scroll is in use. */
 .infinite-scroll .posts-navigation,
 .infinite-scroll.neverending .site-footer {
@@ -1516,7 +1509,7 @@ body {
 
 .project-item h3 {
   font-size: 1.6rem;
-  color: #f1ecec;
+  color: #0f172a;
   margin: 25px 25px 12px;
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -1528,15 +1521,16 @@ body {
 .project-client,
 .project-date {
   margin: 8px 25px;
-  font-size: 0.9rem;
+  font-size: 15px;
   color: #10b981;
   line-height: 1.6;
+  font-weight: 700;
 }
 
 .project-type strong,
 .project-client strong,
 .project-date strong {
-  color: #fefefe;
+  color: #475569;
   font-weight: 700;
 }
 
@@ -1550,8 +1544,8 @@ body {
 }
 
 .project-card-tech strong {
-  color: #fefefe;
-  font-size: 0.9rem;
+  color: #475569;
+  font-size: 15px;
   margin-right: 5px;
   font-weight: 700;
 }
@@ -1577,8 +1571,8 @@ body {
 
 .project-excerpt {
   padding: 12px 0;
-  color: #475569;
-  font-size: 1rem;
+  color: #2d2727;
+  font-size: 16px;
   border-bottom: 1px solid #e2e8f0;
   position: relative;
   padding-left: 30px;
@@ -1586,20 +1580,20 @@ body {
 }
 
 .project-link {
-  display: inline-block;
-  margin: 0 25px 25px;
-  padding: 14px 28px;
+  margin: 0 20px 20px;
+  padding: 12px 26px;
   background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
   color: white;
   text-decoration: none;
-  border-radius: 12px;
-  font-weight: 700;
+  border-radius: 10px;
+  font-weight: 600;
   transition: all 0.3s ease;
   text-align: center;
   align-self: flex-start;
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
   position: relative;
-  overflow: hidden;
+  justify-content: center;
+  display: flex;
 }
 
 .project-link::before {
@@ -1635,7 +1629,7 @@ body {
   padding: 60px 20px 40px;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: white;
-  border-radius: 0 0 30px 30px;
+  border-radius: none;
 }
 
 .single-project .entry-title {
@@ -1932,11 +1926,15 @@ body {
   right: 0;
   bottom: 0;
   background-image: radial-gradient(
-    circle at 30% 50%,
-    rgba(16, 185, 129, 0.1) 0%,
-    transparent 50%
-  );
-  animation: backgroundShift 15s ease infinite;
+      circle at 30% 50%,
+      rgba(16, 185, 129, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(6, 182, 212, 0.15) 0%,
+      transparent 50%
+    );
 }
 
 .blog-title {
@@ -1971,6 +1969,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 60px;
+  border: 1px solid red;
 }
 
 /* Posts Grid */
@@ -2197,6 +2196,7 @@ body {
   position: sticky;
   top: 100px;
   align-self: start;
+  border: 1px solid red;
 }
 
 /* Responsive */
@@ -2746,11 +2746,18 @@ body {
 
 .site-footer {
   background: linear-gradient(135deg, #0f172a 0%, #1a1f3a 100%);
-  color: #cbd5e1;
-  padding: 80px 0 30px;
+  padding: 10px 0 30px;
   position: relative;
   overflow: hidden;
   border-top: 2px solid rgba(16, 185, 129, 0.3);
+  height: 500px;
+}
+
+.footer-jet {
+  margin: 0 auto 40px;
+  color: #10b981;
+  font-family: "Open Sans", Arial, sans-serif; /* Prioritize Open Sans, fall back to Arial, then a generic sans-serif */
+  font-size: medium;
 }
 
 .site-footer::before {
@@ -2822,25 +2829,6 @@ body {
   filter: brightness(1.2);
 }
 
-/* .footer-logo-placeholder {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
-}
-
-.footer-logo-initials {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: white;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  letter-spacing: 2px;
-} */
-
 .footer-titles {
   display: flex;
   flex-direction: column;
@@ -2865,7 +2853,7 @@ body {
 /* Footer Social Links */
 .footer-social h4 {
   font-size: 1.2rem;
-  color: #f8fafc;
+  color: #10b981;
   margin: 0 0 20px 0;
   font-weight: 600;
   justify-content: center;
@@ -2875,6 +2863,8 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
+  justify-content: center;
+  display: grid;
 }
 
 @media (max-width: 480px) {
@@ -2998,7 +2988,7 @@ body {
 
 .footer-copyright p {
   margin: 0;
-  color: #94a3b8;
+  color: #10b981;
 }
 
 .footer-credits {
@@ -3016,7 +3006,7 @@ body {
 
 .footer-credits p {
   margin: 0;
-  color: #94a3b8;
+  color: #fefefe;
 }
 
 .credit-link,
@@ -3140,16 +3130,15 @@ body {
   right: 0;
   bottom: 0;
   background-image: radial-gradient(
-      circle at 20% 50%,
+      circle at 30% 50%,
       rgba(16, 185, 129, 0.15) 0%,
       transparent 50%
     ),
     radial-gradient(
-      circle at 80% 80%,
+      circle at 70% 80%,
       rgba(6, 182, 212, 0.15) 0%,
       transparent 50%
     );
-  animation: backgroundShift 15s ease infinite;
 }
 
 .services-header-content {
@@ -3495,7 +3484,6 @@ body {
       rgba(6, 182, 212, 0.15) 0%,
       transparent 50%
     );
-  animation: backgroundShift 15s ease infinite;
 }
 
 .about-me-header-content {
@@ -3723,4 +3711,3 @@ body {
     font-size: 2.2rem;
   }
 }
-  

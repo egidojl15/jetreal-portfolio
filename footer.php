@@ -99,15 +99,7 @@
 				<div class="footer-credits">
 					<p>
 						Designed & Developed by 
-						<a href="<?php echo esc_url(home_url('/')); ?>" class="credit-link">
-							<?php bloginfo('JETREAL'); ?>
-						</a>
-					</p>
-					<p class="wordpress-credit">
-						Powered by 
-						<a href="https://wordpress.org/" target="_blank" rel="noopener noreferrer" class="wp-link">
-							WordPress
-						</a>
+						<h5 class="footer-jet">Jetler Egido</h5>
 					</p>
 				</div>
 			</div>

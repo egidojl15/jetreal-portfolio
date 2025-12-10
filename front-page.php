@@ -24,91 +24,102 @@
             </section>
         </div> -->
 
-    <section class="projects">
-        <h2>Projects</h2>
+ <section class="projects">
+    <h2>Projects</h2>
 
-        <div class="project-grid">
-            <?php
-            // Query to get projects
-            $args = array(
-                'post_type' => 'project',
-                'posts_per_page' => 6,
-                'orderby' => 'date',
-                'order' => 'DESC'
-            );
-            $projects = new WP_Query($args);
-            
-            // The Loop
-            if ($projects->have_posts()) :
-                while ($projects->have_posts()) : $projects->the_post();
-                    ?>
-                    
-                    <div class="project-item">
-                        <?php if (has_post_thumbnail()) : ?>
-                            <div class="project-thumbnail">
-                                <?php the_post_thumbnail('medium'); ?>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <h3><?php the_title(); ?></h3>
-                        
-                        <?php
-                        // Get project type
-                        $terms = get_the_terms(get_the_ID(), 'project_type');
-                        if ($terms && !is_wp_error($terms)) :
-                            $term_names = array();
-                            foreach ($terms as $term) {
-                                $term_names[] = $term->name;
-                            }
-                            echo '<p class="project-type"><strong>Type:</strong> ' . implode(', ', $term_names) . '</p>';
-                        endif;
-                        
-                        // Get custom fields
-                        $client_name = get_post_meta(get_the_ID(), '_project_client_name', true);
-                        $completion_date = get_post_meta(get_the_ID(), '_project_completion_date', true);
-                        
-                        // Display client name if exists
-                        if ($client_name) :
-                            echo '<p class="project-client"><strong>Client:</strong> ' . esc_html($client_name) . '</p>';
-                        endif;
-                        
-                        // Display completion date if exists
-                        if ($completion_date) :
-                            echo '<p class="project-date"><strong>Completed:</strong> ' . esc_html(date('F Y', strtotime($completion_date))) . '</p>';
-                        endif;
-                        
-                        // Display tech stack
-                        $tech_stack_ids = get_post_meta(get_the_ID(), '_project_tech_stack', true);
-                        if ($tech_stack_ids && is_array($tech_stack_ids)) :
-                            echo '<div class="project-card-tech">';
-                            echo '<strong>Tech:</strong> ';
-                            $tech_names = array();
-                            foreach ($tech_stack_ids as $tech_id) :
-                                $tech_post = get_post($tech_id);
-                                if ($tech_post) :
-                                    $tech_names[] = '<span class="tech-badge">' . esc_html($tech_post->post_title) . '</span>';
-                                endif;
-                            endforeach;
-                            echo implode(' ', $tech_names);
-                            echo '</div>';
-                        endif;
-                        ?>
-                        
-                        <div class="project-excerpt">
-                            <?php the_excerpt(); ?>
+    <div class="project-grid">
+        <?php
+        // Query latest 6 Projects
+        $args = array(
+            'post_type'      => 'project',
+            'posts_per_page' => 6,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+        );
+        $projects = new WP_Query($args);
+
+        if ($projects->have_posts()) :
+            while ($projects->have_posts()) : $projects->the_post();
+                ?>
+                <article class="project-item">
+
+                    <?php if (has_post_thumbnail()) : ?>
+                        <div class="project-thumbnail">
+                            <?php the_post_thumbnail('large'); ?>
                         </div>
-                        
-                        <a href="<?php the_permalink(); ?>" class="project-link">View Project →</a>
-                    </div>
-                    
+                    <?php endif; ?>
+
+                    <h3 class="project-title"><?php the_title(); ?></h3>
+
                     <?php
-                endwhile;
-                wp_reset_postdata(); // Reset post data
-            else :
-                echo '<p>No projects found. Add some projects in the admin!</p>';
-            endif;
-            ?>
-        </div>
-    </section>
+                    /* ---------- Type (taxonomy: project_type) ---------- */
+                    $terms = get_the_terms(get_the_ID(), 'project_type');
+                    if ($terms && !is_wp_error($terms)) :
+                        $term_names = array();
+                        foreach ($terms as $term) {
+                            $term_names[] = $term->name;
+                        }
+                        ?>
+                        <p class="project-type">
+                            <strong>Type:</strong>
+                            <?php echo esc_html(implode(', ', $term_names)); ?>
+                        </p>
+                    <?php endif; ?>
+
+                    <?php
+                    /* ---------- Client + Completion Date (meta) ---------- */
+                    $client_name     = get_post_meta(get_the_ID(), '_project_client_name', true);
+                    $completion_date = get_post_meta(get_the_ID(), '_project_completion_date', true);
+
+                    if ($client_name) : ?>
+                        <p class="project-client">
+                            <strong>Client:</strong>
+                            <?php echo esc_html($client_name); ?>
+                        </p>
+                    <?php endif; ?>
+
+                    <?php if ($completion_date) : ?>
+                        <p class="project-date">
+                            <strong>Completed:</strong>
+                            <?php echo esc_html(date('F Y', strtotime($completion_date))); ?>
+                        </p>
+                    <?php endif; ?>
+
+                    <?php
+                    /* ---------- Tech Stack (relationship via meta) ---------- */
+                    $tech_stack_ids = get_post_meta(get_the_ID(), '_project_tech_stack', true);
+
+                    if ($tech_stack_ids && is_array($tech_stack_ids)) :
+                        echo '<div class="project-card-tech"><strong>Tech:</strong> ';
+                        $tech_badges = array();
+
+                        foreach ($tech_stack_ids as $tech_id) {
+                            $tech_post = get_post($tech_id);
+                            if ($tech_post && $tech_post->post_status === 'publish') {
+                                $tech_badges[] = '<span class="tech-badge">' . esc_html($tech_post->post_title) . '</span>';
+                            }
+                        }
+
+                        echo implode(' ', $tech_badges);
+                        echo '</div>';
+                    endif;
+                    ?>
+
+                    <div class="project-excerpt">
+                        <?php the_excerpt(); ?>
+                    </div>
+
+                    <a href="<?php the_permalink(); ?>" class="project-link">View Project →</a>
+                </article>
+                <?php
+            endwhile;
+            wp_reset_postdata();
+        else :
+            echo '<p>No projects found. Add some projects in the admin!</p>';
+        endif;
+        ?>
+    </div>
+</section>
+
 
     <?php get_footer(); ?>
