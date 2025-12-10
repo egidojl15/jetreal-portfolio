@@ -2,11 +2,15 @@
    SINGLE PROJECT PAGE
    ========================================================================== */
 
+.single-project-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  padding: 60px 20px;
+}
+
 .single-project .entry-header {
   text-align: center;
   margin-bottom: 50px;
-  padding: 60px 20px 40px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  padding: 80px 20px 70px;
   color: white;
   border-radius: none;
 }
@@ -37,22 +41,26 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  justify-content: center;
+  display: flex;
+  object-fit: fill;
 }
 
-.project-featured-image img {
+/* .project-featured-image img {
   width: 100%;
   height: auto;
   display: block;
-}
+} */
 
 /* Project Details Box */
 .project-details {
   background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
   padding: 40px;
-  margin: 50px 0;
+  margin: 50px auto;
   border-radius: 20px;
-  border-left: 5px solid #10b981;
+  border: 3px solid #10b981;
   box-shadow: 0 10px 40px rgba(16, 185, 129, 0.1);
+  width: 800px;
 }
 
 .detail-item {
@@ -90,7 +98,7 @@
 .entry-content {
   margin: 50px 0;
   line-height: 1.9;
-  color: #475569;
+  color: #c6c7c9;
   padding: 0 20px;
   background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
 }
@@ -102,13 +110,13 @@
   margin-bottom: 25px;
   padding-bottom: 20px;
   border-bottom: 3px solid #10b981;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .entry-content p {
   font-size: 1.15rem;
   margin-bottom: 20px;
-  color: #10b981;
+  color: #cedbd7;
 }
 
 /* Responsibilities Section */
@@ -117,21 +125,23 @@
   padding: 40px;
   background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
   border-radius: 20px;
-  border-left: 5px solid #10b981;
+  border: 3px solid #10b981;
   box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1);
+  width: 800px;
+  margin: 50px auto;
 }
 
-.project-responsibilities h2 {
-  font-size: 2rem;
+.project-responsibilities h3 {
+  font-size: 1.9rem;
   color: #dfe3eb;
   margin-bottom: 20px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .project-responsibilities p {
   font-size: 1.1rem;
   line-height: 1.9;
-  color: #10b981;
+  color: #cedbd7;
 }
 
 .project-content {
@@ -140,25 +150,29 @@
   padding: 40px;
   background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
   border-radius: 20px;
-  border-left: 5px solid #10b981;
+  border: 3px solid #10b981;
   box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1);
+  width: 800px;
+  margin: 50px auto;
 }
 
 /* Tech Stack Section on Single Page */
 .project-tech-stack {
   margin-top: 50px;
   padding: 40px;
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-radius: 20px;
-  border-left: 5px solid #10b981;
+  border: 3px solid #10b981;
   box-shadow: 0 10px 40px rgba(16, 185, 129, 0.1);
+  width: 800px;
+  margin: 50px auto;
 }
 
-.project-tech-stack h2 {
-  font-size: 2rem;
-  color: #0f172a;
+.project-tech-stack h4 {
+  font-size: 1.8rem;
+  color: #dfe3eb;
   margin-bottom: 25px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .tech-list {

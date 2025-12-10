@@ -9,6 +9,7 @@ function my_portfolio_project_details_html($post) {
     $project_url = get_post_meta($post->ID, '_project_url', true);
     $completion_date = get_post_meta($post->ID, '_project_completion_date', true);
     $responsibilities = get_post_meta($post->ID, '_project_responsibilities', true);
+    $project_photo_url = get_post_meta($post->ID, '_project_photo_url', true);
     
     ?>
     <table class="form-table">
@@ -29,6 +30,17 @@ function my_portfolio_project_details_html($post) {
                        id="project_url" 
                        name="project_url" 
                        value="<?php echo esc_url($project_url); ?>" 
+                       class="regular-text"
+                       placeholder="https://example.com">
+            </td>
+        </tr>
+        <tr>
+            <th><label for="project_photo_url">Photo Photo URL</label></th>
+            <td>
+                <input type="url" 
+                       id="project_photo_url" 
+                       name="project_photo_url" 
+                       value="<?php echo esc_url($project_photo_url); ?>" 
                        class="regular-text"
                        placeholder="https://example.com">
             </td>

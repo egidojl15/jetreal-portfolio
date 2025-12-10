@@ -21,6 +21,10 @@ function my_portfolio_save_project_details($post_id) {
     if (isset($_POST['project_url'])) {
         update_post_meta($post_id, '_project_url', esc_url_raw($_POST['project_url']));
     }
+    if (isset($_POST['project_photo_url'])) {
+        update_post_meta($post_id, '_project_photo_url', esc_url_raw($_POST['project_photo_url']));
+    }
+    
     if (isset($_POST['project_completion_date'])) {
         update_post_meta($post_id, '_project_completion_date', sanitize_text_field($_POST['project_completion_date']));
     }

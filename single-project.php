@@ -5,7 +5,7 @@
 
 get_header();
 ?>
-
+<div class="single-project-container">
 <main id="primary" class="site-main">
 
     <?php
@@ -79,7 +79,7 @@ get_header();
 
                 <?php if ($responsibilities) : ?>
                     <div class="project-responsibilities">
-                        <h2>My Role & Responsibilities</h2>
+                        <h3>My Role & Responsibilities</h3>
                         <p><?php echo nl2br(esc_html($responsibilities)); ?></p>
                     </div>
                 <?php endif; ?>
@@ -92,7 +92,7 @@ get_header();
             if ($tech_stack_ids && is_array($tech_stack_ids)) :
                 ?>
                 <div class="project-tech-stack">
-                    <h2>Technologies Used</h2>
+                    <h4>Technologies Used</h4>
                     <div class="tech-list">
                         <?php
                         foreach ($tech_stack_ids as $tech_id) :
@@ -115,6 +115,8 @@ get_header();
     <?php endwhile; ?>
 
 </main>
+
+</div>
 
 <?php
 get_footer();
