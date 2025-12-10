@@ -1,7 +1,7 @@
 <?php
 /**
  * Blog Archive Template
- * 
+ * Template Name: Blog
  * Displays the blog posts listing page
  */
 

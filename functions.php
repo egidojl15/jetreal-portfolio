@@ -149,9 +149,14 @@ add_action( 'widgets_init', 'my_portfolio_theme_widgets_init' );
  */
 function my_portfolio_theme_scripts() {
 	wp_enqueue_style( 'my-portfolio-theme-style', get_stylesheet_uri(), array(), _S_VERSION );
+	
+	wp_enqueue_style('my-portfolio-theme-page-about-me', get_template_directory_uri() . '/styles/about-me.css', array('my-portfolio-theme-style'), _S_VERSION);
+	wp_enqueue_style('my-portfolio-theme-home', get_template_directory_uri() . '/styles/home.css', array('my-portfolio-theme-style'), _S_VERSION);
+
 	wp_style_add_data( 'my-portfolio-theme-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'my-portfolio-theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
