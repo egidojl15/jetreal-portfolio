@@ -1,0 +1,187 @@
+/* ==========================================================================
+   SINGLE PROJECT PAGE
+   ========================================================================== */
+
+.single-project .entry-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: white;
+  border-radius: none;
+}
+
+.single-project .entry-title {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  background: linear-gradient(135deg, #ffffff 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.single-project .project-meta {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+}
+
+.single-project .project-meta strong {
+  color: #10b981;
+}
+
+.project-featured-image {
+  margin-bottom: 50px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.project-featured-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Project Details Box */
+.project-details {
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+  padding: 40px;
+  margin: 50px 0;
+  border-radius: 20px;
+  border-left: 5px solid #10b981;
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.1);
+}
+
+.detail-item {
+  margin-bottom: 18px;
+  padding: 15px 0;
+  font-size: 1.1rem;
+  color: #10b981;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.detail-item strong {
+  color: #dfe3eb;
+  margin-right: 12px;
+  font-weight: 700;
+}
+
+.detail-item a {
+  color: #10b981;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+.detail-item a:hover {
+  color: #06b6d4;
+  text-decoration: none;
+}
+
+/* Entry Content */
+.entry-content {
+  margin: 50px 0;
+  line-height: 1.9;
+  color: #475569;
+  padding: 0 20px;
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+}
+
+.entry-content h2 {
+  font-size: 2.2rem;
+  color: #dfe3eb;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #10b981;
+  font-weight: 700;
+}
+
+.entry-content p {
+  font-size: 1.15rem;
+  margin-bottom: 20px;
+  color: #10b981;
+}
+
+/* Responsibilities Section */
+.project-responsibilities {
+  margin-top: 50px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+  border-radius: 20px;
+  border-left: 5px solid #10b981;
+  box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1);
+}
+
+.project-responsibilities h2 {
+  font-size: 2rem;
+  color: #dfe3eb;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.project-responsibilities p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #10b981;
+}
+
+.project-content {
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+  margin-top: 50px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+  border-radius: 20px;
+  border-left: 5px solid #10b981;
+  box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1);
+}
+
+/* Tech Stack Section on Single Page */
+.project-tech-stack {
+  margin-top: 50px;
+  padding: 40px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-radius: 20px;
+  border-left: 5px solid #10b981;
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.1);
+}
+
+.project-tech-stack h2 {
+  font-size: 2rem;
+  color: #0f172a;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.tech-item {
+  display: inline-block;
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+}

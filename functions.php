@@ -152,6 +152,8 @@ function my_portfolio_theme_scripts() {
 	
 	wp_enqueue_style('my-portfolio-theme-page-about-me', get_template_directory_uri() . '/styles/about-me.css', array('my-portfolio-theme-style'), _S_VERSION);
 	wp_enqueue_style('my-portfolio-theme-home', get_template_directory_uri() . '/styles/home.css', array('my-portfolio-theme-style'), _S_VERSION);
+	wp_enqueue_style('my-portfolio-theme-page-services', get_template_directory_uri() . '/styles/page-services.css', array('my-portfolio-theme-style'), _S_VERSION);
+	wp_enqueue_style('my-portfolio-theme-single-project', get_template_directory_uri() . '/styles/single-project.css', array('my-portfolio-theme-style'), _S_VERSION);
 
 	wp_style_add_data( 'my-portfolio-theme-style', 'rtl', 'replace' );
 

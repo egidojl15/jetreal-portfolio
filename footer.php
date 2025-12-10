@@ -14,27 +14,8 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
-		<div class="footer-container">
-			
-			<!-- Footer Top Section -->
-			<div class="footer-top">
-				<div class="footer-branding">
-					<?php if ( has_custom_logo() ) : ?>
-						<div class="footer-logo">
-							<?php the_custom_logo(); ?>
-						</div>
-					<?php else : ?>
-						<div class="footer-logo-placeholder">
-							<span class="footer-logo-initials"><?php echo substr(get_bloginfo('name'), 0, 2); ?></span>
-						</div>
-					<?php endif; ?>
-					
-					<div class="footer-titles">
-						<h3 class="footer-site-title"><?php bloginfo('name'); ?></h3>
-						<p class="footer-tagline"><?php bloginfo('description'); ?></p>
-					</div>
-				</div>
 
+			<!-- Footer Top Section -->
 			<div class="footer-container"><!-- Social Media Links -->
 					<div class="footer-social">
 						<h4>Connect With Me</h4>
@@ -103,8 +84,6 @@
 					</p>
 				</div>
 			</div>
-
-		</div><!-- .footer-container -->
 	</footer><!-- #colophon -->
 
 </div><!-- #page -->
