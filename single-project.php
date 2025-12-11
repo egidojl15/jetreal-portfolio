@@ -17,6 +17,7 @@ get_header();
         $project_url = get_post_meta(get_the_ID(), '_project_url', true);
         $completion_date = get_post_meta(get_the_ID(), '_project_completion_date', true);
         $responsibilities = get_post_meta(get_the_ID(), '_project_responsibilities', true);
+        $project_photo_url = get_post_meta(get_the_ID(), '_project_photo_url', true);
         
         // Get project type
         $terms = get_the_terms(get_the_ID(), 'project_type');
@@ -41,11 +42,13 @@ get_header();
                 <?php endif; ?>
             </header>
             
-            <?php if (has_post_thumbnail()) : ?>
+            
+            <!-- Display the featured image on single image -->
+            <!-- <?php if (has_post_thumbnail()) : ?>
                 <div class="project-featured-image">
                     <?php the_post_thumbnail('large'); ?>
                 </div>
-            <?php endif; ?>
+            <?php endif; ?> -->
             
             <div class="project-details">
                 
@@ -63,7 +66,16 @@ get_header();
                 
                 <?php if ($project_url) : ?>
                     <div class="detail-item">
-                        <strong>URL:</strong> <a href="<?php echo esc_url($project_url); ?>" target="_blank"><?php echo esc_html($project_url); ?></a>
+                        <strong>Project URL:</strong> <a href="<?php echo esc_url($project_url); ?>" target="_blank"><?php echo esc_html($project_url); ?></a>
+                    </div>
+                <?php endif; ?>
+
+            </div>
+
+            <div>
+                <?php if ($project_photo_url) : ?>
+                    <div class="project-photo">
+                        <img src="<?php echo esc_url($project_photo_url); ?>" alt="Project Photo" style="max-width:100%; height:auto;">
                     </div>
                 <?php endif; ?>
                 

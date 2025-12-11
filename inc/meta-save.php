@@ -41,3 +41,24 @@ function my_portfolio_save_project_details($post_id) {
     }
 }
 add_action('save_post', 'my_portfolio_save_project_details');
+
+// About me page tech stack meta box save
+// Save the meta box data
+function save_page_tech_stack_meta($post_id) {
+    if (!isset($_POST['page_tech_stack_nonce_field']) || 
+        !wp_verify_nonce($_POST['page_tech_stack_nonce_field'], 'page_tech_stack_nonce')) {
+        return;
+    }
+    
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    $tech_stack = isset($_POST['page_tech_stack']) ? array_map('intval', $_POST['page_tech_stack']) : array();
+    update_post_meta($post_id, '_page_tech_stack', $tech_stack);
+}
+add_action('save_post_page', 'save_page_tech_stack_meta');

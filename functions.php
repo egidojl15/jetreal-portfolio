@@ -119,10 +119,11 @@ function my_portfolio_theme_content_width() {
 add_action( 'after_setup_theme', 'my_portfolio_theme_content_width', 0 );
 
 
-// Taxonomies and Custom Post Types
+// Get Taxonomies and Custom Post Types
 require_once get_template_directory() . '/inc/taxonomies.php';
 require_once get_template_directory() . '/inc/meta-boxes.php';
 require_once get_template_directory() . '/inc/meta-save.php';
+require_once get_template_directory() . '/inc/custom-post-types.php';
 
 /**
  * Register widget area.
@@ -153,7 +154,6 @@ function my_portfolio_theme_scripts() {
 	wp_enqueue_style('my-portfolio-theme-page-about-me', get_template_directory_uri() . '/styles/about-me.css', array('my-portfolio-theme-style'), _S_VERSION);
 	wp_enqueue_style('my-portfolio-theme-home', get_template_directory_uri() . '/styles/home.css', array('my-portfolio-theme-style'), _S_VERSION);
 	wp_enqueue_style('my-portfolio-theme-page-services', get_template_directory_uri() . '/styles/page-services.css', array('my-portfolio-theme-style'), _S_VERSION);
-	// wp_enqueue_style('my-portfolio-theme-single-project', get_template_directory_uri() . '/styles/single-project.css', array('my-portfolio-theme-style'), _S_VERSION);
 	wp_enqueue_style('my-portfolio-theme-single-project', get_template_directory_uri() . '/styles/single-project2.css', array('my-portfolio-theme-style'), _S_VERSION);
 	wp_enqueue_style('my-portfolio-theme-front-page', get_template_directory_uri() . '/styles/front-page.css', array('my-portfolio-theme-style'), _S_VERSION);
 
@@ -169,66 +169,8 @@ function my_portfolio_theme_scripts() {
 add_action( 'wp_enqueue_scripts', 'my_portfolio_theme_scripts' );
 
 
-/**
- * Register Custom Post Types
- */
-function my_portfolio_register_post_types() {
-    
-    // Register Project CPT
-    register_post_type('project', array(
-        'labels' => array(
-            'name' => 'Projects',
-            'singular_name' => 'Project',
-            'add_new' => 'Add New Project',
-            'add_new_item' => 'Add New Project',
-            'edit_item' => 'Edit Project',
-            'new_item' => 'New Project',
-            'view_item' => 'View Project',
-            'search_items' => 'Search Projects',
-            'not_found' => 'No projects found',
-            'not_found_in_trash' => 'No projects found in Trash'
-        ),
-        'public' => true,
-        'has_archive' => true,
-        'menu_icon' => 'dashicons-portfolio',
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
-        'rewrite' => array('slug' => 'projects'),
-        'show_in_rest' => true, // Enables block editor
-    ));
-    
-    // Register Tech Stack CPT
-    register_post_type('tech_stack', array(
-        'labels' => array(
-            'name' => 'Tech Stack',
-            'singular_name' => 'Technology',
-            'add_new' => 'Add New Technology',
-            'add_new_item' => 'Add New Technology',
-            'edit_item' => 'Edit Technology',
-            'new_item' => 'New Technology',
-            'view_item' => 'View Technology',
-            'search_items' => 'Search Technologies',
-            'not_found' => 'No technologies found',
-            'not_found_in_trash' => 'No technologies found in Trash'
-        ),
-        'public' => true,
-        'has_archive' => true,
-        'menu_icon' => 'dashicons-editor-code',
-        'supports' => array('title', 'editor', 'thumbnail'),
-        'rewrite' => array('slug' => 'tech-stack'),
-        'show_in_rest' => true,
-    ));
-}
-add_action('init', 'my_portfolio_register_post_types');
 
-function my_portfolio_add_project_meta_boxes() {
-    add_meta_box(
-        'project_details',                  // Meta box ID
-        'Project Details',                  // Title shown in editor
-        'my_portfolio_project_details_html', // Callback function (we'll create this next)
-        'project',                          // Post type
-        'normal',                           // Position (normal, side, advanced)
-        'high'                              // Priority
-    );
-}
-add_action('add_meta_boxes', 'my_portfolio_add_project_meta_boxes');
+
+
+
 

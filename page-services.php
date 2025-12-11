@@ -45,7 +45,6 @@ get_header();
                 
                 <!-- Service 1: Web Development -->
                 <div class="service-card">
-                    <div class="service-icon">💻</div>
                     <h3 class="service-title">Web Development</h3>
                     <p class="service-description">
                         Custom websites and web applications built with modern technologies. 
@@ -62,7 +61,6 @@ get_header();
                 <!-- Service 2: WordPress Development -->
                 <div class="service-card featured">
                     <div class="featured-badge">Popular</div>
-                    <div class="service-icon">🔧</div>
                     <h3 class="service-title">WordPress Development</h3>
                     <p class="service-description">
                         Custom WordPress themes and plugins. Turn your vision into a 
@@ -79,7 +77,6 @@ get_header();
                 
                 <!-- Service 3: UI/UX Design -->
                 <div class="service-card">
-                    <div class="service-icon">🎨</div>
                     <h3 class="service-title">UI/UX Design</h3>
                     <p class="service-description">
                         Beautiful, intuitive designs that provide exceptional user experiences 
@@ -95,7 +92,6 @@ get_header();
                 
                 <!-- Service 5: Website Optimization -->
                 <div class="service-card">
-                    <div class="service-icon">⚡</div>
                     <h3 class="service-title">Website Optimization</h3>
                     <p class="service-description">
                         Improve your website's performance, speed, and search engine rankings 
@@ -111,7 +107,6 @@ get_header();
                 
                 <!-- Service 6: Maintenance & Support -->
                 <div class="service-card">
-                    <div class="service-icon">🛡️</div>
                     <h3 class="service-title">Maintenance & Support</h3>
                     <p class="service-description">
                         Ongoing website maintenance, updates, backups, and technical support 

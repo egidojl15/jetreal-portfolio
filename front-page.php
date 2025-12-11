@@ -61,7 +61,7 @@
                         }
                         ?>
                         <p class="project-type">
-                            <strong>Type:</strong>
+                            <strong>Project Type:</strong>
                             <?php echo esc_html(implode(', ', $term_names)); ?>
                         </p>
                     <?php endif; ?>
@@ -78,14 +78,14 @@
                         </p>
                     <?php endif; ?>
 
-                    <?php if ($completion_date) : ?>
+                    <!-- <?php if ($completion_date) : ?>
                         <p class="project-date">
                             <strong>Completed:</strong>
                             <?php echo esc_html(date('F Y', strtotime($completion_date))); ?>
                         </p>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
 
-                    <?php
+                    <!-- <?php
                     /* ---------- Tech Stack (relationship via meta) ---------- */
                     $tech_stack_ids = get_post_meta(get_the_ID(), '_project_tech_stack', true);
 
@@ -103,11 +103,11 @@
                         echo implode(' ', $tech_badges);
                         echo '</div>';
                     endif;
-                    ?>
+                    ?> -->
 
-                    <div class="project-excerpt">
+                    <!-- <div class="project-excerpt">
                         <?php the_excerpt(); ?>
-                    </div>
+                    </div> -->
 
                     <a href="<?php the_permalink(); ?>" class="project-link">View Project →</a>
                 </article>
@@ -121,5 +121,4 @@
     </div>
 </section>
 
-
-    <?php get_footer(); ?>
+<?php get_footer(); ?>

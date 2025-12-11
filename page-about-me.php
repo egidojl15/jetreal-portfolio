@@ -1,16 +1,7 @@
 <?php
-/**
- * Template Name: About Me Page
- * 
- * Custom template for the About Me page
- * 
- * @package My_Portfolio_Theme
- */
-
-get_header();
+    get_header();
 ?>
 
-<!-- About Me Header -->
 <section class="about-me-header">
     <div class="about-me-header-content">
         <h1 class="about-me-title"><?php the_title(); ?></h1>
@@ -18,79 +9,66 @@ get_header();
     </div>
 </section>
 
-<!-- About Me Content -->
-<main id="primary" class="site-main about-me-page">
-    
-    <?php
-    while (have_posts()) :
-        the_post();
-        
-        ?>
-        
-        <div class="about-me-container">
-            
-            <!-- Featured Image (Optional) -->
-            <?php if (has_post_thumbnail()) : ?>
-                <div class="about-me-image">
-                    <?php the_post_thumbnail('large'); ?>
-                </div>
-            <?php endif; ?>
-            
-            <!-- About Me Content -->
-            <div class="about-me-content">
-                <?php the_content(); ?>
-            </div>
-            
-        </div>
-        
-    <?php endwhile; ?>
-    
-    <!-- Skills Section (Optional - you can customize this) -->
-    <section class="skills-section">
+<section class="skills-section">
         <div class="skills-container">
-            <h2>Skills & Expertise</h2>
+            <h2>Skills & Technologies</h2>
             
             <div class="skills-grid">
+                <?php
+                // Get tech stack specifically assigned to this page
+                $page_tech_ids = get_post_meta(get_the_ID(), '_page_tech_stack', true);
                 
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <ul class="skill-list">
-                        <li>HTML & CSS</li>
-                        <li>JavaScript</li>
-                        <li>React.js</li>
-                        <li>Responsive Design</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <ul class="skill-list">
-                        <li>PHP</li>
-                        <li>WordPress</li>
-                        <li>MySQL</li>
-                        <li>REST APIs</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Tools & Other</h3>
-                    <ul class="skill-list">
-                        <li>Git & GitHub</li>
-                        <li>VS Code</li>
-                        <li>Figma</li>
-                        <li>Xampp</li>
-                        <li>MySQL Workbench</li>
-                        <li>Excel</li>
-                        <li>PostgreSQL</li>
-                    </ul>
-                </div>
+                if ($page_tech_ids && is_array($page_tech_ids)) {
+                    // Dynamically organize by category
+                    $tech_by_category = array();
+                    
+                    foreach ($page_tech_ids as $tech_id) {
+                        $tech_post = get_post($tech_id);
+                        if ($tech_post) {
+                            $tech_name = $tech_post->post_title;
+                            
+                            // Get the category from WordPress taxonomy
+                            $terms = get_the_terms($tech_id, 'tech_category');
+                            
+                            if ($terms && !is_wp_error($terms)) {
+                                // Use the first category assigned
+                                $category = $terms[0]->name;
+                                
+                                // Create category array if it doesn't exist
+                                if (!isset($tech_by_category[$category])) {
+                                    $tech_by_category[$category] = array();
+                                }
+                                
+                                // Add tech to category
+                                $tech_by_category[$category][] = $tech_name;
+                            }
+                        }
+                    }
+                    
+                    // Display each category
+                    foreach ($tech_by_category as $category => $technologies) :
+                        if (!empty($technologies)) :
+                            // Sort alphabetically
+                            sort($technologies);
+                            ?>
+                            <div class="skill-category">
+                                <h3><?php echo esc_html($category); ?></h3>
+                                <ul class="skill-list">
+                                    <?php foreach ($technologies as $tech) : ?>
+                                        <li><?php echo esc_html($tech); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                            <?php
+                        endif;
+                    endforeach;
+                } else {
+                    echo '<p>No skills selected for this page.</p>';
+                }
+                ?>
                 
             </div>
         </div>
     </section>
-
-    
-</main>
-
 <?php
 get_footer();
