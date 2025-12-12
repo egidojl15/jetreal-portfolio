@@ -14,7 +14,7 @@ get_header();
 <section class="services-header">
     <div class="services-header-content">
         <h1 class="services-title">Services</h1>
-        <p class="services-subtitle">Web development solutions tailored to your needs</p>
+        <p class="services-subtitle">Practical digital solutions designed to support your goals</p>
     </div>
 </section>
 
