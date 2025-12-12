@@ -62,3 +62,37 @@ function save_page_tech_stack_meta($post_id) {
     update_post_meta($post_id, '_page_tech_stack', $tech_stack);
 }
 add_action('save_post_page', 'save_page_tech_stack_meta');
+
+/**
+ * Save service details meta box data
+ */
+function save_service_details_meta_box($post_id) {
+    // Check nonce
+    if (!isset($_POST['service_details_nonce']) || !wp_verify_nonce($_POST['service_details_nonce'], 'save_service_details')) {
+        return;
+    }
+    
+    // Check if autosave
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    // Check user permissions
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    // Save featured status
+    if (isset($_POST['service_featured'])) {
+        update_post_meta($post_id, '_service_featured', '1');
+    } else {
+        delete_post_meta($post_id, '_service_featured');
+    }
+    
+    // Save features
+    if (isset($_POST['service_features'])) {
+        $features = sanitize_textarea_field($_POST['service_features']);
+        update_post_meta($post_id, '_service_features', $features);
+    }
+}
+add_action('save_post_services', 'save_service_details_meta_box');

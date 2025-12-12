@@ -171,3 +171,59 @@ function render_page_tech_stack_meta_box($post) {
     }
     echo '</div>';
 }
+
+/**
+ * Add meta boxes for Services
+ */
+function add_services_meta_boxes() {
+    add_meta_box(
+        'service_details',
+        'Service Details',
+        'render_service_details_meta_box',
+        'services',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_services_meta_boxes');
+
+/**
+ * Render the service details meta box
+ */
+function render_service_details_meta_box($post) {
+    // Add nonce for security
+    wp_nonce_field('save_service_details', 'service_details_nonce');
+    
+    // Get existing values
+    $is_featured = get_post_meta($post->ID, '_service_featured', true);
+    $features = get_post_meta($post->ID, '_service_features', true);
+    ?>
+    
+    <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold;">
+            <input type="checkbox" name="service_featured" value="1" <?php checked($is_featured, '1'); ?> />
+            Mark as Featured/Popular
+        </label>
+        <p class="description">Featured services will have a "Popular" badge.</p>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <label for="service_features" style="display: block; margin-bottom: 5px; font-weight: bold;">
+            Service Features (one per line)
+        </label>
+        <textarea 
+            id="service_features" 
+            name="service_features" 
+            rows="8" 
+            style="width: 100%;"
+            placeholder="Responsive Design&#10;Loads Fast&#10;SEO Optimized&#10;Cross-browser Compatible"
+        ><?php echo esc_textarea($features); ?></textarea>
+        <p class="description">Enter each feature on a new line.</p>
+    </div>
+    
+    <div style="padding: 15px; background: #f0f0f1; border-left: 4px solid #2271b1;">
+        <strong>Tip:</strong> Use the excerpt field above for the service description that appears on the card.
+    </div>
+    
+    <?php
+}

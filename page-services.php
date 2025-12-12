@@ -21,104 +21,64 @@ get_header();
 <!-- Services Content -->
 <main id="primary" class="site-main services-page">
     
-    <?php
-    while (have_posts()) :
-        the_post();
-        ?>
-        
-        <!-- Intro Section (Optional - uses page content) -->
-        <?php if (get_the_content()) : ?>
-            <section class="services-intro">
-                <div class="services-intro-content">
-                    <?php the_content(); ?>
-                </div>
-            </section>
-        <?php endif; ?>
-        
-    <?php endwhile; ?>
-    
     <!-- Services Grid -->
     <section class="services-grid-section">
         <div class="services-container">
             
             <div class="services-grid">
                 
-                <!-- Service 1: Web Development -->
-                <div class="service-card">
-                    <h3 class="service-title">Web Development</h3>
-                    <p class="service-description">
-                        Custom websites and web applications built with modern technologies. 
-                        From simple landing pages to complex web platforms.
-                    </p>
-                    <ul class="service-features">
-                        <li>Responsive Design</li>
-                        <li>Loads Fast</li>
-                        <li>SEO Optimized</li>
-                        <li>Cross-browser Compatible</li>
-                    </ul>
-                </div>
+                <?php
+                // Query for Services custom post type
+                $args = array(
+                    'post_type'      => 'services',
+                    'posts_per_page' => -1, // Get all services
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC'
+                );
                 
-                <!-- Service 2: WordPress Development -->
-                <div class="service-card featured">
-                    <div class="featured-badge">Popular</div>
-                    <h3 class="service-title">WordPress Development</h3>
-                    <p class="service-description">
-                        Custom WordPress themes and plugins. Turn your vision into a 
-                        fully functional WordPress website.
-                    </p>
-                    <ul class="service-features">
-                        <li>Custom look & feel</li>
-                        <li>Easy to edit yourself</li>
-                        <li>Blog & contact forms</li>
-                        <li>Online shop option</li>
-                        <li>Website Maintenance</li>
-                    </ul>
-                </div>
+                $services_query = new WP_Query($args);
                 
-                <!-- Service 3: UI/UX Design -->
-                <div class="service-card">
-                    <h3 class="service-title">UI/UX Design</h3>
-                    <p class="service-description">
-                        Beautiful, intuitive designs that provide exceptional user experiences 
-                        and drive conversions.
-                    </p>
-                    <ul class="service-features">
-                        <li>Clean & modern look</li>
-                        <li>Easy to navigate</li>
-                        <li>Matches your brand</li>
-                        <li>Focused on your goals</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 5: Website Optimization -->
-                <div class="service-card">
-                    <h3 class="service-title">Website Optimization</h3>
-                    <p class="service-description">
-                        Improve your website's performance, speed, and search engine rankings 
-                        for better results.
-                    </p>
-                    <ul class="service-features">
-                        <li>Speed Optimization</li>
-                        <li>SEO Implementation</li>
-                        <li>Mobile Optimization</li>
-                        <li>Security Hardening</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 6: Maintenance & Support -->
-                <div class="service-card">
-                    <h3 class="service-title">Maintenance & Support</h3>
-                    <p class="service-description">
-                        Ongoing website maintenance, updates, backups, and technical support 
-                        to keep your site running smoothly.
-                    </p>
-                    <ul class="service-features">
-                        <li>Regular Updates</li>
-                        <li>Security Monitoring</li>
-                        <li>Backup Management</li>
-                        <li>Technical Support</li>
-                    </ul>
-                </div>
+                if ($services_query->have_posts()) :
+                    while ($services_query->have_posts()) : $services_query->the_post();
+                        
+                        // Get custom fields
+                        $is_featured = get_post_meta(get_the_ID(), '_service_featured', true);
+                        $features = get_post_meta(get_the_ID(), '_service_features', true);
+                        
+                        // Convert features string to array if it exists
+                        $features_array = array();
+                        if (!empty($features)) {
+                            $features_array = array_filter(array_map('trim', explode("\n", $features)));
+                        }
+                        ?>
+                        
+                        <div class="service-card <?php echo $is_featured ? 'featured' : ''; ?>">
+                            <?php if ($is_featured) : ?>
+                                <div class="featured-badge">Popular</div>
+                            <?php endif; ?>
+                            
+                            <h3 class="service-title"><?php the_title(); ?></h3>
+                            
+                            <div class="service-description">
+                                <?php the_excerpt(); ?>
+                            </div>
+                            
+                            <?php if (!empty($features_array)) : ?>
+                                <ul class="service-features">
+                                    <?php foreach ($features_array as $feature) : ?>
+                                        <li><?php echo esc_html($feature); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
+                        
+                    <?php endwhile;
+                    wp_reset_postdata();
+                else : ?>
+                    
+                    <p>No services found. Please add some services in the WordPress admin.</p>
+                    
+                <?php endif; ?>
                 
             </div>
             

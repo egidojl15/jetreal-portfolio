@@ -66,7 +66,7 @@ function my_portfolio_register_post_types() {
 		'has_archive' => true,
 		'menu_icon' => 'dashicons-hammer',
 		'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
-		'rewrite' => array('slug' => 'services'),
+		'rewrite' => array('slug' => 'service-items'),
 		'show_in_rest' => true,
 	));
 }

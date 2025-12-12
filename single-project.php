@@ -30,7 +30,7 @@ get_header();
                 
                 <?php if ($terms && !is_wp_error($terms)) : ?>
                     <div class="project-meta">
-                        <strong>Project Type:</strong> 
+                        <strong>Project Type: </strong> 
                         <?php
                         $term_names = array();
                         foreach ($terms as $term) {
@@ -54,19 +54,34 @@ get_header();
                 
                 <?php if ($client_name) : ?>
                     <div class="detail-item">
-                        <strong>Client:</strong> <?php echo esc_html($client_name); ?>
+                        <strong>Client: </strong> <?php echo esc_html($client_name); ?>
                     </div>
                 <?php endif; ?>
                 
                 <?php if ($completion_date) : ?>
                     <div class="detail-item">
-                        <strong>Completed:</strong> <?php echo esc_html(date('F Y', strtotime($completion_date))); ?>
+                        <strong>Completed: </strong> <?php echo esc_html(date('F Y', strtotime($completion_date))); ?>
                     </div>
                 <?php endif; ?>
+
+                <?php
+                    /* ---------- Type (taxonomy: project_type) ---------- */
+                        $terms = get_the_terms(get_the_ID(), 'project_type');
+                        if ($terms && !is_wp_error($terms)) :
+                            $term_names = array();
+                            foreach ($terms as $term) {
+                                $term_names[] = $term->name;
+                            }
+                            ?>
+                            <div class="detail-item">
+                                <strong>Project Type: </strong>
+                                <?php echo esc_html(implode(', ', $term_names)); ?>
+                            </div>
+                <?php   endif; ?>
                 
                 <?php if ($project_url) : ?>
                     <div class="detail-item">
-                        <strong>Project URL:</strong> <a href="<?php echo esc_url($project_url); ?>" target="_blank"><?php echo esc_html($project_url); ?></a>
+                        <strong>Project URL: </strong> <a href="<?php echo esc_url($project_url); ?>" target="_blank"><?php echo esc_html($project_url); ?></a>
                     </div>
                 <?php endif; ?>
 
@@ -84,14 +99,14 @@ get_header();
             <div class="project-content">
 
                 <div class="entry-content">
-                    <h2>Project Description</h2>
+                    <h2>Project Description: </h2>
                     <?php the_content(); ?>
                 </div>
             </div>
 
                 <?php if ($responsibilities) : ?>
                     <div class="project-responsibilities">
-                        <h3>My Role & Responsibilities</h3>
+                        <h3>My Role & Responsibilities: </h3>
                         <p><?php echo nl2br(esc_html($responsibilities)); ?></p>
                     </div>
                 <?php endif; ?>
@@ -104,7 +119,7 @@ get_header();
             if ($tech_stack_ids && is_array($tech_stack_ids)) :
                 ?>
                 <div class="project-tech-stack">
-                    <h4>Technologies Used</h4>
+                    <h4>Tech Stack & Technologies: </h4>
                     <div class="tech-list">
                         <?php
                         foreach ($tech_stack_ids as $tech_id) :
