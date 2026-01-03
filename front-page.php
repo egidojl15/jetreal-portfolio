@@ -1,31 +1,45 @@
-    <?php get_header(); ?>
+<?php get_header(); ?>
 
-    <section class="hero">
-        <h1>Hi, I'm Jetler Egido</h1>
-        <p>Welcome to my portfolio website!</p>
+<section class="hero">
+    <!-- Floating Orbs -->
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
 
+    <div class="hero-content-wrapper">
+        <!-- Typing Animation Title -->
+        <h1 id="typing-title">Hi, I'm Jetler Egido<span class="typing-cursor"></span></h1>
+        
+        <p>Full-Stack Developer • Creative Problem Solver • Digital Experience Architect</p>
+
+        <!-- 3D Hero Image -->
         <section class="my-hero-image">
-            <img src="<?php echo get_template_directory_uri(); ?>/images/oka.jpg" alt="Hero Image" class="hero-image">
+            <div class="hero-image-inner">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/oka.jpg" alt="Jetler Egido" class="hero-image">
+            </div>
         </section>
 
-    </section>
+        <!-- CTA Buttons -->
+        <div class="hero-cta">
+            <a href="#projects" class="hero-btn hero-btn-primary">
+                <span>View My Work</span>
+            </a>
+            <a href="#contact" class="hero-btn hero-btn-secondary">
+                <span>Get In Touch</span>
+            </a>
+        </div>
+    </div>
 
-        <!-- <div class="about-container">
-            <section class="about">
-                <?php
-                // Get the About Me page (ID: 16)
-                $about_page = get_post(16);
-                
-                if ($about_page) {
-                    echo '<h2>' . esc_html($about_page->post_title) . '</h2>';
-                    echo '<div>' . apply_filters('the_content', $about_page->post_content) . '</div>';
-                }
-                ?>
-            </section>
-        </div> -->
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <span class="scroll-text">Scroll Down</span>
+        <div class="scroll-mouse"></div>
+        <div class="scroll-arrow"></div>
+    </div>
+</section>
 
- <section class="projects">
-    <h2>Projects</h2>
+<!-- <section class="projects" id="projects">
+    <h2>Featured Projects</h2>
 
     <div class="project-grid">
         <?php
@@ -61,15 +75,14 @@
                         }
                         ?>
                         <p class="project-type">
-                            <strong>Project Type:</strong>
+                            <strong>Type:</strong>
                             <?php echo esc_html(implode(', ', $term_names)); ?>
                         </p>
                     <?php endif; ?>
 
                     <?php
-                    /* ---------- Client + Completion Date (meta) ---------- */
-                    $client_name     = get_post_meta(get_the_ID(), '_project_client_name', true);
-                    $completion_date = get_post_meta(get_the_ID(), '_project_completion_date', true);
+                    /* ---------- Client ---------- */
+                    $client_name = get_post_meta(get_the_ID(), '_project_client_name', true);
 
                     if ($client_name) : ?>
                         <p class="project-client">
@@ -78,47 +91,133 @@
                         </p>
                     <?php endif; ?>
 
-                    <!-- <?php if ($completion_date) : ?>
-                        <p class="project-date">
-                            <strong>Completed:</strong>
-                            <?php echo esc_html(date('F Y', strtotime($completion_date))); ?>
-                        </p>
-                    <?php endif; ?> -->
-
-                    <!-- <?php
-                    /* ---------- Tech Stack (relationship via meta) ---------- */
-                    $tech_stack_ids = get_post_meta(get_the_ID(), '_project_tech_stack', true);
-
-                    if ($tech_stack_ids && is_array($tech_stack_ids)) :
-                        echo '<div class="project-card-tech"><strong>Tech:</strong> ';
-                        $tech_badges = array();
-
-                        foreach ($tech_stack_ids as $tech_id) {
-                            $tech_post = get_post($tech_id);
-                            if ($tech_post && $tech_post->post_status === 'publish') {
-                                $tech_badges[] = '<span class="tech-badge">' . esc_html($tech_post->post_title) . '</span>';
-                            }
-                        }
-
-                        echo implode(' ', $tech_badges);
-                        echo '</div>';
-                    endif;
-                    ?> -->
-
-                    <!-- <div class="project-excerpt">
-                        <?php the_excerpt(); ?>
-                    </div> -->
-
-                    <a href="<?php the_permalink(); ?>" class="project-link">View Project →</a>
+                    <a href="<?php the_permalink(); ?>" class="project-link">View Project</a>
                 </article>
                 <?php
             endwhile;
             wp_reset_postdata();
         else :
-            echo '<p>No projects found. Add some projects in the admin!</p>';
+            echo '<p style="color: rgba(255,255,255,0.7); text-align: center; grid-column: 1/-1; font-size: 1.2rem;">No projects found yet. Stay tuned for amazing work!</p>';
         endif;
         ?>
     </div>
-</section>
+</section> -->
+
+<script>
+// ========== TYPING ANIMATION ==========
+const typingTitle = document.getElementById('typing-title');
+const text = "Hi, I'm Jetler Egido";
+const cursor = typingTitle.querySelector('.typing-cursor');
+
+// Clear existing text
+typingTitle.textContent = '';
+typingTitle.appendChild(cursor);
+
+let index = 0;
+function typeText() {
+    if (index < text.length) {
+        const textNode = document.createTextNode(text.charAt(index));
+        typingTitle.insertBefore(textNode, cursor);
+        index++;
+        setTimeout(typeText, 100);
+    }
+}
+
+// Start typing after a short delay
+setTimeout(typeText, 500);
+
+// ========== SMOOTH SCROLLING ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ========== PARALLAX EFFECT FOR HERO ORBS ==========
+document.addEventListener('mousemove', (e) => {
+    const orbs = document.querySelectorAll('.hero-orb');
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+    
+    orbs.forEach((orb, index) => {
+        const speed = (index + 1) * 20;
+        const xMove = (x - 0.5) * speed;
+        const yMove = (y - 0.5) * speed;
+        
+        orb.style.transform = `translate(${xMove}px, ${yMove}px)`;
+    });
+});
+
+// ========== 3D TILT EFFECT ON HERO IMAGE ==========
+const heroImage = document.querySelector('.hero-image-inner');
+
+if (heroImage) {
+    heroImage.addEventListener('mousemove', (e) => {
+        const rect = heroImage.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        heroImage.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+    
+    heroImage.addEventListener('mouseleave', () => {
+        heroImage.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+    });
+}
+
+// ========== CURSOR TRAIL EFFECT (Optional - adds magic!) ==========
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function createTrail() {
+    cursorX += (mouseX - cursorX) * 0.1;
+    cursorY += (mouseY - cursorY) * 0.1;
+    
+    const trail = document.createElement('div');
+    trail.style.position = 'fixed';
+    trail.style.left = cursorX + 'px';
+    trail.style.top = cursorY + 'px';
+    trail.style.width = '5px';
+    trail.style.height = '5px';
+    trail.style.borderRadius = '50%';
+    trail.style.background = 'radial-gradient(circle, rgba(16, 185, 129, 0.8), transparent)';
+    trail.style.pointerEvents = 'none';
+    trail.style.zIndex = '9999';
+    trail.style.boxShadow = '0 0 10px rgba(16, 185, 129, 0.8)';
+    
+    document.body.appendChild(trail);
+    
+    setTimeout(() => {
+        trail.style.transition = 'opacity 0.5s, transform 0.5s';
+        trail.style.opacity = '0';
+        trail.style.transform = 'scale(2)';
+    }, 10);
+    
+    setTimeout(() => {
+        trail.remove();
+    }, 500);
+}
+
+// Uncomment this if you want the cursor trail effect
+// setInterval(createTrail, 50);
+</script>
 
 <?php get_footer(); ?>

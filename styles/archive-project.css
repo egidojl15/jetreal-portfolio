@@ -1,0 +1,458 @@
+/* ==========================================================================
+   PROJECTS ARCHIVE PAGE - MIND-BLOWING GRID WITH 3D CARDS
+   ========================================================================== */
+
+.projects {
+  padding: 150px 40px;
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated mesh background */
+.projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      90deg,
+      rgba(16, 185, 129, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: meshMove 20s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes meshMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.projects::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #10b981,
+    #06b6d4,
+    #a855f7,
+    transparent
+  );
+  animation: scanLine 4s linear infinite;
+  box-shadow: 0 0 20px #10b981;
+}
+
+@keyframes scanLine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.projects h2 {
+  font-size: 4.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 100px;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #10b981 40%,
+    #06b6d4 70%,
+    #a855f7 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite, titlePulse 3s ease-in-out infinite;
+  letter-spacing: -2px;
+  text-shadow: 0 0 80px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes titlePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.projects h2::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+  box-shadow: 0 0 20px #10b981;
+  animation: expandContract 3s ease-in-out infinite;
+}
+
+@keyframes expandContract {
+  0%,
+  100% {
+    width: 100px;
+  }
+  50% {
+    width: 200px;
+  }
+}
+
+.projects h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -30px;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981, #06b6d4, #a855f7);
+  border-radius: 2px;
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.8);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.8);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(6, 182, 212, 1);
+    opacity: 0.8;
+  }
+}
+
+/* PROJECT GRID - MASONRY STYLE */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 50px;
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* 3D PROJECT CARDS */
+.project-item {
+  background: rgba(15, 15, 15, 0.8);
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  backdrop-filter: blur(10px);
+  animation: cardEntry 0.8s ease backwards;
+}
+
+.project-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.project-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.project-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.project-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.project-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.project-item:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+@keyframes cardEntry {
+  from {
+    opacity: 0;
+    transform: translateY(100px) rotateX(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+/* Holographic border effect */
+.project-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  padding: 2px;
+  background: linear-gradient(135deg, #10b981, #06b6d4, #a855f7, #10b981);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  animation: borderFlow 3s linear infinite;
+}
+
+@keyframes borderFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.project-item:hover::before {
+  opacity: 1;
+}
+
+/* Glow effect on hover */
+.project-item::after {
+  content: "";
+  position: absolute;
+  inset: -100px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.4), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.project-item:hover::after {
+  opacity: 1;
+}
+
+.project-item:hover {
+  transform: translateY(-20px) scale(1.03) rotateX(5deg);
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 30px 80px rgba(16, 185, 129, 0.4),
+    0 0 100px rgba(6, 182, 212, 0.3), inset 0 0 50px rgba(16, 185, 129, 0.1);
+}
+
+/* PROJECT THUMBNAIL - EPIC ZOOM */
+.project-thumbnail {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+}
+
+.project-thumbnail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.3) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.8s ease;
+}
+
+.project-item:hover .project-thumbnail::before {
+  transform: translateX(200%) skewX(-15deg);
+}
+
+.project-thumbnail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.project-item:hover .project-thumbnail::after {
+  opacity: 1;
+}
+
+.project-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.project-item:hover .project-thumbnail img {
+  transform: scale(1.2) rotate(3deg);
+  filter: brightness(1.1) contrast(1.2) saturate(1.3);
+}
+
+/* PROJECT CONTENT */
+.project-item h3 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 35px 35px 20px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.project-item:hover h3 {
+  color: #10b981;
+  transform: translateX(5px);
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+}
+
+.project-type,
+.project-client {
+  margin: 12px 35px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.project-type strong,
+.project-client strong {
+  color: #10b981;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.project-item:hover .project-type,
+.project-item:hover .project-client {
+  transform: translateX(5px);
+}
+
+/* BUTTON - ULTIMATE DESIGN */
+.project-link {
+  display: inline-block;
+  margin: 30px 35px 40px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  color: #000;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform-style: preserve-3d;
+}
+
+.project-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.project-link:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.project-link::after {
+  content: " →";
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.project-link:hover::after {
+  transform: translateX(10px);
+}
+
+.project-link:hover {
+  transform: translateY(-5px) scale(1.05) translateZ(20px);
+  box-shadow: 0 20px 50px rgba(16, 185, 129, 0.7),
+    0 0 60px rgba(6, 182, 212, 0.5);
+  color: #000;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
+  }
+
+  .projects h2 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 100px 25px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .projects h2 {
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects h2 {
+    font-size: 2.2rem;
+  }
+
+  .project-item h3 {
+    font-size: 1.6rem;
+  }
+
+  .project-grid {
+    gap: 30px;
+  }
+}

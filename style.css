@@ -2,10 +2,10 @@
 
 /*!
 Theme Name: My Portfolio Theme
-Theme URI: http://underscores.me/
-Author: Underscores.me
-Author URI: http://underscores.me/
-Description: Description
+Theme URI: https://website.com/wordpress-themes/my-portfolio-theme
+Author: Jetler Egido
+Author URI: https://website.com/wordpress-themes/my-portfolio-theme
+Description: This theme is for personal portfolio websites, showcasing projects and skills with a modern and elegant design.
 Version: 1.0.0
 Tested up to: 5.4
 Requires PHP: 5.6
@@ -1486,8 +1486,6 @@ body {
 
 .social-link:hover {
   transform: translateY(-3px);
-  background: rgba(16, 185, 129, 0.2);
-  border-color: #10b981;
   color: white;
 }
 
@@ -1510,10 +1508,14 @@ body {
   border-color: #8803c5;
 }
 
-.social-link.twitter:hover,
-.social-link.facebook:hover {
+/* .social-link.twitter:hover {
   background: rgba(29, 161, 242, 0.2);
   border-color: #1da1f2;
+} */
+
+.social-link.whatsapp:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
 }
 
 .social-link.email:hover {
